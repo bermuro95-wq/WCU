@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wachemo University – IS Dept</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      scroll-behavior: smooth;
+    }
+
+    /* Navigation */
+    nav {
+      background: #003366;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #ffcc00;
+    }
+
+    /* Logo */
+    .logo {
+      width: 50px;
+      height: 50px;
+      background: url('https://www.wcu.edu.et/images/logo.png') no-repeat center;
+      background-size: contain;
+      border-radius: 50%;
+    }
+
+    /* Sections */
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    #home {
+      background: linear-gradient(135deg, #cceeff, #e6f7ff);
+      min-height: 80vh;
+    }
+    #home h1 {
+      color: #003366;
+      margin-top: 20px;
+    }
+
+    #about {
+      background: white;
+    }
+    #about h2 {
+      color: #003366;
+    }
+    #about p {
+      max-width: 600px;
+      margin: 0 auto;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    #register {
+      background: #f4f4f9;
+    }
+
+    /* Registration Form */
+    .container {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    h2.form-title {
+      color: #003366;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      text-align: left;
+      margin: 10px 0 5px;
+      font-weight: bold;
+      color: #003366;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    input:focus, select:focus {
+      border-color: #ffcc00;
+      outline: none;
+      box-shadow: 0 0 5px rgba(255,204,0,0.5);
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #003366;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #ffcc00;
+      color: #003366;
+      font-weight: bold;
+    }
+    #result {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 15px;
+      background: #003366;
+      color: #ffcc00;
+      text-align: left;
+      display: none;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Footer */
+    footer {
+      background: #003366;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media(max-width: 500px){
+      nav {
+        flex-direction: column;
+      }
+      nav a {
+        margin: 10px 0 0 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="logo"></div>
+    <div>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#register">Register</a>
+    </div>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home">
+    <h1>Welcome to Wachemo University – IS Department 🎓</h1>
+    <p>Explore our Information Systems programs and register as a student.</p>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About IS Department</h2>
+    <p>
+      The Information Systems Department at Wachemo University provides high-quality education 
+      in computer science, data management, and software development. Join us to learn modern 
+      IT skills and prepare for a successful career.
+    </p>
+  </section>
+
+  <!-- Registration Section -->
+  <section id="register">
+    <div class="container">
+      <h2 class="form-title">Register Now</h2>
+      <form id="regForm">
+        <label>Full Name</label>
+        <input type="text" placeholder="Enter your name" required>
+
+        <label>Student ID</label>
+        <input type="text" placeholder="e.g. WCU1234" required>
+
+        <label>Email</label>
+        <input type="email" placeholder="example@wcu.edu.et" required>
+
+        <label>Gender</label>
+        <select required>
+          <option value="">Select</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+        </select>
+
+        <label>Year of Study</label>
+        <select required>
+          <option value="">Select</option>
+          <option>1st Year</option>
+          <option>2nd Year</option>
+          <option>3rd Year</option>
+          <option>4th Year</option>
+        </select>
+
+        <button type="submit">Register</button>
+      </form>
+
+      <div id="result"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Wachemo University – IS Department
+  </footer>
+
+<script>
+  const form = document.getElementById("regForm");
+  const resultDiv = document.getElementById("result");
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    const name = form.querySelector("input[type='text']").value;
+    const studentID = form.querySelectorAll("input[type='text']")[1].value;
+    const email = form.querySelector("input[type='email']").value;
+    const gender = form.querySelector("select:nth-of-type(1)").value;
+    const year = form.querySelector("select:nth-of-type(2)").value;
+
+    resultDiv.style.display = "block";
+    resultDiv.innerHTML = `
+      🎉 <strong>Registration Successful!</strong> 🎓<br><br>
+      <strong>Name:</strong> ${name} <br>
+      <strong>Student ID:</strong> ${studentID} <br>
+      <strong>Email:</strong> ${email} <br>
+      <strong>Gender:</strong> ${gender} <br>
+      <strong>Year:</strong> ${year} <br>
+    `;
+    form.reset();
+  });
+</script>
+
+</body>
+</html>
